@@ -43,3 +43,9 @@ Thumbs.db
 # Models & Large Artifacts
 models/*.onnx
 !models/.gitkeep
+
+# Agent & Workspace Metadata
+.agent/
+.agents/
+.superpowers/
+
