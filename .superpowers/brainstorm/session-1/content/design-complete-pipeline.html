@@ -1,0 +1,53 @@
+<h2>Alur Lengkap Backend: 3 Stage Pipeline Cerdas</h2>
+<p class="subtitle">Deteksi Keaslian Dokumen -> Cari Sumber Internet -> Rekonstruksi AI Visual</p>
+
+<div class="mockup">
+  <div class="mockup-header">Logic Flow Backend</div>
+  <div class="mockup-body" style="background: #0f172a; padding: 20px; border-radius: 8px;">
+    <div style="display: flex; flex-direction: column; gap: 15px; font-family: monospace;">
+      
+      <!-- STAGE 0 -->
+      <div style="background: #1e293b; padding: 14px; border-radius: 6px; border-left: 5px solid #22c55e;">
+        <span style="color: #4ade80; font-weight: bold; font-size: 1.1em;">STAGE 0: Gatekeeper / Deteksi Keaslian Dokumen</span>
+        <p style="color: #cbd5e1; font-size: 0.9em; margin-top: 5px;">
+          Sistem mengecek: <em>"Apakah ada coretan / timpaan teks di gambar ini?"</em>
+        </p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+          <div style="background: #064e3b; padding: 10px; border-radius: 4px; border: 1px solid #10b981;">
+            <strong style="color: #a7f3d0;">TIDAK ADA CORETAN (ASLI):</strong>
+            <p style="margin: 3px 0 0 0; color: #ecfdf5; font-size: 0.8em;">🛑 <strong>STOP LANGSUNG.</strong> Output: <code>Status: Dokumen Asli / Bersih</code>.</p>
+          </div>
+          <div style="background: #78350f; padding: 10px; border-radius: 4px; border: 1px solid #f59e0b;">
+            <strong style="color: #fde68a;">ADA CORETAN / TIMPAAN:</strong>
+            <p style="margin: 3px 0 0 0; color: #fffbeb; font-size: 0.8em;">➡️ Lanjut ke STAGE 1 (Pencarian Sumber).</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; color: #64748b;">⬇</div>
+
+      <!-- STAGE 1 -->
+      <div style="background: #1e293b; padding: 14px; border-radius: 6px; border-left: 5px solid #eab308;">
+        <span style="color: #fde047; font-weight: bold; font-size: 1.1em;">STAGE 1: Internet / Knowledge Base Matching</span>
+        <p style="color: #cbd5e1; font-size: 0.9em; margin-top: 5px;">
+          Mencari sumber dokumen pembanding di internet menggunakan kata kunci dari teks yang bersih.
+        </p>
+        <p style="color: #86efac; font-size: 0.85em; margin: 3px 0 0 0;">
+          ✔ Jika Ketemu: Ambil kata asli dari sumber (Akurasi 100%).
+        </p>
+      </div>
+
+      <div style="text-align: center; color: #64748b;">⬇</div>
+
+      <!-- STAGE 2 -->
+      <div style="background: #1e293b; padding: 14px; border-radius: 6px; border-left: 5px solid #a855f7;">
+        <span style="color: #c084fc; font-weight: bold; font-size: 1.1em;">STAGE 2: Vision Transformer AI Fallback (TrOCR)</span>
+        <p style="color: #cbd5e1; font-size: 0.9em; margin-top: 5px;">
+          JIKA TIDAK KETEMU DI INTERNET: Otak AI TrOCR menganalisis visual sisa garis tinta untuk menebak tulisan asli.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>

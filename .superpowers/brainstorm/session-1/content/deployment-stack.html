@@ -1,0 +1,31 @@
+<h2>Pertanyaan 3: Target Environment Backend PKM</h2>
+<p class="subtitle">Pilih arsitektur runtime & framework deployment backend yang direncanakan</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Opsi A: FastAPI / Flask di Laptop/CPU Standar</h3>
+      <p class="label" style="color: #22c55e;">PALING POPULER UNTUK DEMO PKM</p>
+      <p>Menggunakan Python (FastAPI/Flask) yang berjalan di CPU lokal. Ringan, cepat disiapkan, dan mudah didemokan saat penilaian PKM.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Opsi B: Python + GPU Acceleration (Google Colab / Cloud GPU)</h3>
+      <p class="label" style="color: #3b82f6;">PERFORMA AKURASI MAKSIMAL</p>
+      <p>Memanfaatkan GPU (PyTorch/Transformers) untuk menjalankan model Vision Transformer (TrOCR) dengan inference ultra akurat.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Opsi C: Ultra-Lightweight ONNX Runtime Export</h3>
+      <p class="label" style="color: #a855f7;">OPTIMASI PERFORMA & PORTABILITAS</p>
+      <p>Model AI diekspor ke format ONNX / OpenVINO sehingga bisa berjalan sangat cepat di CPU maupun perangkat edge/browser dengan footprint memori sangat kecil.</p>
+    </div>
+  </div>
+</div>

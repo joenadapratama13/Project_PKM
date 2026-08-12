@@ -1,0 +1,62 @@
+<h2>Opsi 2: Pipeline Deteksi & Rekonstruksi Teks Asli</h2>
+<p class="subtitle">Arsitektur Hybrid Image Processing + Pre-trained Model (Ringan & Tanpa Train dari Nol)</p>
+
+<div class="mockup">
+  <div class="mockup-header">Visualisasi Flow Backend Pipeline</div>
+  <div class="mockup-body">
+    <div style="display: flex; flex-direction: column; gap: 15px; font-family: monospace;">
+      <div style="background: #1e293b; padding: 12px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+        <strong style="color: #60a5fa;">STEP 1: Image Preprocessing & Contrast Enhancement</strong>
+        <p style="margin: 5px 0 0 0; color: #94a3b8; font-size: 0.9em;">
+          Convert RGB to HSV / LAB Color Space + Adaptive Thresholding (OpenCV)
+        </p>
+      </div>
+
+      <div style="text-align: center; color: #64748b;">⬇</div>
+
+      <div style="background: #1e293b; padding: 12px; border-radius: 8px; border-left: 4px solid #a855f7;">
+        <strong style="color: #c084fc;">STEP 2: Ink Layer Separation (Pemisahan Tinta)</strong>
+        <p style="margin: 5px 0 0 0; color: #94a3b8; font-size: 0.9em;">
+          Teknik: K-Means Color Clustering / Morphological Dilation Filter / Difference of Gaussians (DoG) untuk memisahkan coretan penimpa vs teks latar belakang.
+        </p>
+      </div>
+
+      <div style="text-align: center; color: #64748b;">⬇</div>
+
+      <div style="background: #1e293b; padding: 12px; border-radius: 8px; border-left: 4px solid #22c55e;">
+        <strong style="color: #4ade80;">STEP 3: Text Restoration & OCR Inference</strong>
+        <p style="margin: 5px 0 0 0; color: #94a3b8; font-size: 0.9em;">
+          Model OCR Pretrained (EasyOCR / PaddleOCR / Manga-OCR) membaca karakter dari gambar layer yang sudah dibersihkan.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top: 25px;">Rekomendasi Model Pre-trained untuk OCR & Separasi:</h3>
+
+<div class="options">
+  <div class="option" data-choice="paddleocr" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>OpenCV + PaddleOCR (Recommended)</h3>
+      <p>Model OCR sangat ringan (~15MB MobileNet backbone), sangat presisi untuk teks dokumen/cetak. Sangat cepat di CPU.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="easyocr" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>OpenCV + EasyOCR (PyTorch-based)</h3>
+      <p>Mudah diintegrasikan dengan Python, mendukung 80+ bahasa, tetapi sedikit lebih berat RAM ketimbang PaddleOCR.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="trocr-nano" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>OpenCV + TrOCR-small (HuggingFace Transformers)</h3>
+      <p>Akurat untuk tulisan tangan (handwritten) yang tertimpa, menggunakan Vision Transformer pre-trained siap pakai.</p>
+    </div>
+  </div>
+</div>

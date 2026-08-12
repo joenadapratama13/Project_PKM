@@ -1,0 +1,34 @@
+<h2>Design Section 2: Component Breakdown & Model Handling</h2>
+<p class="subtitle">Struktur Modul Backend & Manajemen Model ONNX TrOCR</p>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-body">
+      <h3>1. Preprocessor Module (<code>core/preprocessor.py</code>)</h3>
+      <ul>
+        <li><strong>Image Normalization:</strong> Resizing citra masukan ke format $384 \times 384$ px & normalisasi RGB Mean/Std.</li>
+        <li><strong>Noise Reduction & Bounding Box Extractor:</strong> Menggunakan Morphological Thresholding OpenCV untuk memisahkan baris teks/kata menjadi potongan region of interest (ROI).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3>2. ONNX Model Handler (<code>core/onnx_engine.py</code>)</h3>
+      <ul>
+        <li><strong>ONNX Session Management:</strong> Memuat berkas <code>encoder_model.onnx</code> dan <code>decoder_model.onnx</code> sekali saja saat server FastAPI dinyalakan (Singleton pattern).</li>
+        <li><strong>Decoder Loop:</strong> Menjalankan autoregresif decoding (token-by-token) menggunakan greedy search / beam search untuk menghasilkan kata asli.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3>3. Post-Processor & Evaluator (<code>core/postprocessor.py</code>)</h3>
+      <ul>
+        <li><strong>Tokenizer Decoding:</strong> Mengubah token ID menjadi string teks terbaca (menggunakan HuggingFace TrOCR Fast Tokenizer).</li>
+        <li><strong>Overwriting Confidence Score:</strong> Menghitung nilai keyakinan bahwa teks tersebut mengalami timpaan vs teks normal.</li>
+      </ul>
+    </div>
+  </div>
+</div>

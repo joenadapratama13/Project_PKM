@@ -1,0 +1,50 @@
+<h2>Design Section 3: API Endpoints & Verification Plan</h2>
+<p class="subtitle">Spesifikasi Endpoint FastAPI & Rencana Pengujian Backend PKM</p>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-body">
+      <h3>1. Endpoint Utama: <code>POST /api/v1/analyze-document</code></h3>
+      <p class="label" style="color: #38bdf8;">INPUT: Gambar Dokumen (File upload / multipart-form)</p>
+      
+      <div style="background: #0f172a; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.85em; color: #a7f3d0; margin-top: 10px;">
+        <pre style="margin: 0; white-space: pre-wrap;">
+{
+  "status": "success",
+  "is_edited": true,
+  "authenticity_score": 65.5,
+  "summary": "Ditemukan 1 lokasi teks tertimpa",
+  "results": [
+    {
+      "box": [120, 45, 300, 90],
+      "overwritten": true,
+      "source_found_online": true,
+      "recovered_text": "UNIVERSITAS SUMATERA UTARA",
+      "method_used": "Internet Retrieval Match",
+      "confidence": 0.98
+    }
+  ]
+}
+        </pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3>2. Endpoint Cek Kesehatan: <code>GET /api/v1/health</code></h3>
+      <p>Mengembalikan status sistem backend, ketersediaan model ONNX, dan performa CPU.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3>3. Rencana Pengujian (Verification Plan)</h3>
+      <ul>
+        <li><strong>Unit Testing:</strong> Pengujian fungsi OpenCV contour & ONNX Session via Pytest.</li>
+        <li><strong>Benchmark Testing:</strong> Pengujian waktu respon (Inference Latency & Memori RAM).</li>
+        <li><strong>Sample Testing:</strong> Menguji 3 skenario sampel (Dokumen Asli, Dokumen Timpaan Ada di Internet, Dokumen Timpaan Tulisan Tangan).</li>
+      </ul>
+    </div>
+  </div>
+</div>

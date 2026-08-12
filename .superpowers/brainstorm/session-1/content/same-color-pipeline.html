@@ -1,0 +1,78 @@
+<h2>Analisis Khusus: Pemisahan Tinta Warna Sama (Hitam ditimpa Hitam)</h2>
+<p class="subtitle">Kombinasi Teks Cetak & Tulisan Tangan (C + Y)</p>
+
+<div class="section">
+  <div style="background: #0f172a; padding: 15px; border-radius: 8px; border: 1px solid #334155;">
+    <h3 style="color: #ef4444; margin-top: 0;">Tantangan Utama:</h3>
+    <p style="color: #cbd5e1; margin-bottom: 0;">
+      Nilai warna piksel (RGB/HSV) antara teks asli dan penimpa adalah <strong>SAMA (Hitam)</strong>. Thresholding warna biasa TIDAK BISA memisahkan layer tinta ini.
+    </p>
+  </div>
+</div>
+
+<h3>3 Pendekatan Model Backend Tanpa Train Dari Nol (Pre-trained):</h3>
+
+<div class="cards">
+  <div class="card" data-choice="approach1" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>Approach 1: Deep Vision Transformer OCR (TrOCR-small + Custom Fine-Tune)</h3>
+      <p class="label" style="color: #3b82f6;">REKOMENDASI UTAMA DARI MODEL AI</p>
+      <p>Menggunakan pre-trained <code>microsoft/trocr-small-handwritten</code> atau <code>trocr-base-stage1</code>. Vision Transformer (ViT) secara intuitif dapat mengenali pola karakter meskipun terpotong/tertimpa garis oretan hitam.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Kelebihan</h4>
+          <ul>
+            <li>Model SOTA HuggingFace siap pakai</li>
+            <li>Sangat kuat untuk teks cetak MAUPUN tulisan tangan</li>
+            <li>Hanya perlu fine-tune beberapa epoch dengan dataset synthetic text overlay</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Catatan</h4>
+          <ul>
+            <li>Butuh PyTorch / Transformers di backend</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="approach2" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>Approach 2: OpenCV Morphological Stroke Filtering + PaddleOCR</h3>
+      <p class="label" style="color: #22c55e;">HYBRID IMAGE PROCESSING + LIGHTWEIGHT OCR</p>
+      <p>Memanfaatkan perbedaan ketebalan stroke & kontur (Difference of Gaussians / Thinning algorithm) untuk menghilangkan garis oretan lurus/silang sebelum dilempar ke PaddleOCR.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Kelebihan</h4>
+          <ul>
+            <li>Sangat ringan di CPU (tanpa GPU)</li>
+            <li>Inference hitungan milidetik</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Catatan</h4>
+          <ul>
+            <li>Membutuhkan tuning threshold heuristik OpenCV</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="approach3" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>Approach 3: Autoencoder Inpainting (Lama / OpenCV Inpainting) + OCR</h3>
+      <p class="label" style="color: #eab308;">DEEP INPAINTING RESTORATION</p>
+      <p>Mendeteksi garis penimpa dengan model U-Net ringan, merestorasi/menghapus bagian garis (Inpainting), lalu membaca huruf dengan OCR.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Kelebihan</h4>
+          <ul>
+            <li>Hasil gambar pemisahan teks sangat bersih visualnya</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
