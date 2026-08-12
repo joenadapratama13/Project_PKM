@@ -40,7 +40,7 @@ PKM/
 │   └── utils/
 │       └── image_processing.py# Preprocessing Gambar (Aidil)
 ├── docs/
-│   └── superpowers/specs/spesifikasi.md
+│   └── spesifikasi.md
 ├── requirements.txt
 ├── .gitignore
 └── README.md
